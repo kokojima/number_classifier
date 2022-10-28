@@ -3,6 +3,10 @@ import streamlit as st
 import matplotlib.pyplot as plt
 from PIL import Image
 from model import predict
+import pandas as pd
+from pytube import YouTube
+import base64
+from io import BytesIO
 
 st.set_option("deprecation.showfileUploaderEncoding", False)
 
@@ -29,21 +33,23 @@ if img_file is not None:
 
         # 結果の表示
         st.subheader("判定結果")
+        start_time=[4,0,2,4,6,10,13,4,19,23]
+        url=[
+          "https://youtu.be/cPSnkQVhJHw?t=4",
+          "https://youtu.be/g89DfaOLtYA",
+          "https://youtu.be/g89DfaOLtYA?t=2",
+          "https://youtu.be/g89DfaOLtYA?t=4",
+          "https://youtu.be/g89DfaOLtYA?t=6",
+          "https://youtu.be/g89DfaOLtYA?t=10",
+          "https://youtu.be/g89DfaOLtYA?t=13",
+          "https://youtu.be/Up8IwPj5VYY?t=4",
+          "https://youtu.be/g89DfaOLtYA?t=19",
+          "https://youtu.be/g89DfaOLtYA?t=23"]
         n_top = 3  # 確率が高い順に3位まで返す
         for result in results[:n_top]:
             st.write(str(round(result[1]*100, 2)) + "%の確率で" + result[0] + "です。")
-
-        # 円グラフの表示
-        pie_labels = [result[0] for result in results[:n_top]]
-        pie_labels.append("others")  # その他
-        pie_probs = [result[1] for result in results[:n_top]]
-        pie_probs.append(sum([result[1] for result in results[n_top:]]))  # その他
-        fig, ax = plt.subplots()
-        wedgeprops={"width":0.3, "edgecolor":"white"}
-        textprops = {"fontsize":6}
-        ax.pie(pie_probs, labels=pie_labels, counterclock=False, startangle=90,
-               textprops=textprops, autopct="%.2f", wedgeprops=wedgeprops)  # 円グラフ
-        st.pyplot(fig)
+            path = url[int(result[0])]
+            st.video(path,'video/mp4',start_time[int(result[0])])             
 
 st.sidebar.write("")
 st.sidebar.write("")
