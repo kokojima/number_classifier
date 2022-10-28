@@ -5,6 +5,5 @@ pandas==1.3.5
 Pillow
 matplotlib
 pytube
-base64
 BytesIO
 pandas
