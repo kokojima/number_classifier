@@ -12,7 +12,7 @@ from streamlit_drawable_canvas import st_canvas
 st.set_option("deprecation.showfileUploaderEncoding", False)
 
 st.title("手書き数字認識アプリ")
-st.write("白枠の中に0から9までの数字を一つ描いて、「Go!」をクリック！")
+st.write("枠の中に0から9までの数字を一つ描いて、「Go!」をクリック！")
 
 # Specify canvas parameters in application
 drawing_mode = "freedraw"
