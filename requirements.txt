@@ -6,3 +6,4 @@ Pillow
 matplotlib
 pytube
 pandas
+streamlit_drawable_canvas
